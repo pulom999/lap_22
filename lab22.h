@@ -62,6 +62,43 @@ void Unit::showStatus(){
 void Unit::newTurn(){
 	guard_on = false;
 }
+bool Unit::isDead(){
+	if(hp<=0){
+		return true;
+	}else{
+		return false;
+	}
+}
+void Unit::guard(){
+	guard_on=true;
+}
+int Unit::beAttacked(int oppatk){
+int calcu;
+	if(!guard_on){
+		calcu=oppatk-def;
+		hp=hp-calcu;
+		return calcu;
+	}else{
+		calcu=(oppatk-def)/3;
+		hp=hp-calcu;
+		return calcu;
+}
+}
+int Unit::attack(Unit &target){
+	return target.beAttacked(atk);
+}
+int Unit::heal(){
+	int summer=rand()%21+10;
+	int dee=hp;
+	if(summer>hpmax-dee){
+	    summer=hpmax-dee;
+	    hp=hp+(hpmax-dee);
+		return summer;
+	}else{
+	hp=hp+summer;
+		return summer;
+	}
+}
 
 
 
